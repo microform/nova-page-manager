@@ -84,6 +84,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Page model
+    |--------------------------------------------------------------------------
+    |
+    | Use a custom Page model.
+    |
+    | Example:
+    | use OptimistDigital\NovaPageManager\Models\Page as NovaPage;
+    |
+    | class Page extends NovaPage {
+    |
+    | }
+    |
+    */
+
+    'page_model' => null,
+
+    /*
+    |--------------------------------------------------------------------------
     | Overwrite seo fields with a custom implementation
     |--------------------------------------------------------------------------
     |
@@ -114,7 +132,10 @@ return [
     |
     */
 
-    'page_url' => null,
+    'page_url' => function (\OptimistDigital\NovaPageManager\Models\Page $page) {
+        return env('FRONTEND_URL') . $page->path;
+      
+    },
 
 
     /*

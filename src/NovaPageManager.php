@@ -36,6 +36,7 @@ class NovaPageManager extends Tool
     public static function getTemplates(): array
     {
         $templates = config('nova-page-manager.templates', []);
+
         return array_filter($templates, function ($template) {
             return class_exists($template);
         });
@@ -91,6 +92,12 @@ class NovaPageManager extends Tool
     {
         $getPagePath = config('nova-page-manager.page_path');
         return isset($getPagePath) ? call_user_func($getPagePath, $page, $path) : $path;
+    }
+
+    public static function getPagesModel()
+    {
+        
+        return new $model;
     }
 
     public static function hasNovaLang(): bool
